@@ -10,61 +10,69 @@ namespace StudentEncapApp
     internal class Student
     {
         public const double VALUE = 9.5;
-        private int StudentRollNo { get; set; }
-        private string StudentName {  get; set; }
+        private int _studentRollNo;
+        private string _studentName;
 
-        private double StudentCGPA { get; set; }
+        private double _studentCGPA;
 
-        public Student(int studentRollNo, string studentName, double studentCGPA)
+        public int GetStudentRollNo()
         {
-            StudentRollNo = studentRollNo;
-            StudentName = studentName;
-            StudentCGPA = studentCGPA;
+            return _studentRollNo;
+        }
 
-            if (StudentRollNo > 0) 
-            {
-                StudentRollNo = studentRollNo;
-            }
-            else 
-            {
-                Console.WriteLine("Student Roll No. Should be positive");
-            }
-            
+        public string GetStudentName()
+        {
+            return _studentName;
+        }
 
-            
-            if (StudentName.Length < 5)
+        public double GetStudentCGPT()
+        {
+            return _studentCGPA;
+        }
+
+        public void SetStudentRollNo(int studentRollNo)
+        {
+            if(_studentRollNo > 0)
             {
-                StudentName = " ";
+                _studentRollNo = studentRollNo;
             }
             else
             {
-                StudentName = studentName;
+                Console.WriteLine("Student Roll No. Should be positive");
             }
+        }
 
-            if ( StudentCGPA > 0 && StudentCGPA <= 10)
+        public void SetStudentName(string studentName) 
+        {
+            _studentName = (_studentName.Length < 5)?" ": studentName;
+            
+        }
+
+        public void SetStudentCGPA(double studentCGPA)
+        {
+            if (_studentCGPA > 0 && _studentCGPA <= 10)
             {
-                StudentCGPA = studentCGPA;
-                
+                _studentCGPA = studentCGPA;
+
             }
             else
             {
                 Console.WriteLine("CGPA Should be between 1 to 10");
             }
-          
+
         }
 
         public double CGPAGenerator()
         {
             double percentage;
-            percentage = StudentCGPA * VALUE;
+            percentage = _studentCGPA * VALUE;
             return percentage;
         }
 
         public string StudentDetails()
         {
-            return("Student Roll No. is: "+StudentRollNo+ "\nStudent Name is: "+StudentName+"\nStudent CGPA is: "+CGPAGenerator());
+            return("Student Roll No. is: "+_studentRollNo+ "\nStudent Name is: "+_studentName+"\nStudent CGPA is: "+CGPAGenerator());
         }
-
 
     }
 }
